@@ -1,15 +1,15 @@
 // incluindo as bibliotecas do C
-#include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
+#include <stdio.h>
 
 // definindo o tamanho do array
 // pode alterar para definir a quantidade
 // de livros a ser cadastrada
-# define elementos 20
+# define elementos 5
 
-// cria uma strutc para guardar os cadastros
+// cria uma struct para guardar os cadastros
 struct biblioteca{
 	int codigo;
 	char nom_aut[250];
@@ -36,13 +36,13 @@ int main(int argc, char *argv[]) {
 	setlocale(LC_ALL,"Portuguese");
 
 	// para evitar o problema de imprimir texto destruindo os caracteres especiais
-	unsigned int cp = 1252;
-	unsigned int cpIn = GetConsoleCP();
-	unsigned int cpOut = GetConsoleOutputCP();
-	SetConsoleOutputCP(cp);
-	SetConsoleCP(cp);
+	//unsigned int cp = 1252;
+	//unsigned int cpIn = GetConsoleCP();
+	//unsigned int cpOut = GetConsoleOutputCP();
+	//SetConsoleOutputCP(cp);
+	//SetConsoleCP(cp);
 
-	// declaração de variavies
+	// declaraï¿½ï¿½o de variavies
 	struct biblioteca lista_livros[elementos];
 
 	// iniciando as variaveis para evitar lixo de memoria
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 	// o programa vai executar pelo menos uma vez
 	do
 	{
-		// apresenta as opções ao usuário
+		// apresenta as opcoes ao usuario
 		printf("Digite 1 - Inserir um novo cadastro \n");
 		printf("Digite 2 - Mostrar todos os cadastros \n");
 		printf("Digite 0 - Encerrar \n");
@@ -68,96 +68,96 @@ int main(int argc, char *argv[]) {
 
 		switch(opcao)
 		{
-			// caso o usuário escolheu um novo cadastro
+			// caso o usuario escolheu um novo cadastro
 			case (char)'1':
 
-				// faz o laço, olhando a quantidade a ser preenchida e se a lista ainda não está completa
+				// faz o laco, olhando a quantidade a ser preenchida e se a lista ainda nï¿½o estï¿½ completa
 				for(i=0; i < elementos && count < elementos ; i++)
 				{
 
-					system("cls");
+					system("clear");
 
-					// definindo o código do cadastro
+					// definindo o codigo do cadastro
 					lista_livros[i].codigo = i;
 
 					// nome do autor
-					printf("\nInsira o nome do(s) %dº autor(es) da obra:", i+1);
-					gets(lista_livros[i].nom_aut);
+					printf("\nInsira o nome do(s) [%d] autor(es) da obra:", i+1);
+					fgets(lista_livros[i].nom_aut, sizeof lista_livros, stdin);
 					fflush(stdin);
 
 					//nome do livro
-					printf("\nInsira o nome do %dº livro:", i+1);
-					gets(lista_livros[i].nom_livro);
+					printf("\nInsira o nome do [%d] livro:", i+1);
+					fgets(lista_livros[i].nom_livro, sizeof lista_livros, stdin);
 					fflush(stdin);
 
 					// nome do editor
-					printf("\nInsira o nome da %dº editora:", i+1);
-					gets(lista_livros[i].nom_edit);
+					printf("\nInsira o nome da [%d] editora:", i+1);
+					fgets(lista_livros[i].nom_edit, sizeof lista_livros, stdin);
 					fflush(stdin);
 
 					count++;
 				}
 
-				// informa ao usuário que alcançou o limite de armazenamento
-				system("cls");
-				printf("Sistema de cadastro lotado. Não é possível armazenar mais informações!\n");
-				system("pause");
-				system("cls");
+				// informa ao usuario que alcanaou o limite de armazenamento
+				system("clear");
+				printf("Sistema de cadastro lotado. Nao e possivel armazenar mais informacoes!\n");
+				getchar();
+				system("clear");
 
 			break;
 
 			// caso tenha escolhido imprimir os cadastros
 			case (char)'2':
 
-				// se a lista não estiver vazia
+				// se a lista nï¿½o estiver vazia
 				if(count != 0)
 				{
 
 					for(i=0; i < elementos; i++)
 					{
-						system("cls");
+						system("clear");
 						printf("\nCodigo: %d\n",lista_livros[i].codigo);
 						printf("Autor(es): %s\n",lista_livros[i].nom_aut);
 						printf("Livro: %s\n",lista_livros[i].nom_livro);
 						printf("Editora: %s\n\n",lista_livros[i].nom_edit);
 
-						system("pause");
+						getchar();
 					}
 
-					system("cls");
+					system("clear");
 				}
 
 				// se a lista estiver vazia
 				else
 				{
-					system("cls");
+					system("clear");
 					printf("Lista vazia! \n");
-					system ("pause");
-					system("cls");
+					getchar();
+					system("clear");
 				}
 
 			break;
 
-			// caso o usuário escolheu encerrar o programa
+			// caso o usuario escolheu encerrar o programa
 			case (char)'0':
 
-				system("cls");
+				system("clear");
 				exit(-1);
 
 			break;
 
-			// caso o usuário digite uma opção inválida
+			// caso o usuario digite uma opcao invalida
 			default:
-				system("cls");
-				printf("Erro: Opção inválida! \n");
-				system("pause");
+				system("clear");
+				printf("Erro: Opcao invalida! \n");
+				getchar();
 
 		}
 
-		system("cls");
+		system("clear");
 	}
 
-	// enquanto não for informado 0 para encerrar, continua a execução do programa
+	// enquanto nao for informado 0 para encerrar, continua a execucao do programa
 	while(opcao !='0');
 
 	// encerra o programa

@@ -1,2 +1,7 @@
-*.exe
+*.c
 *.cpp
+*.vscode
+a.out
+*.sh
+*.txt
+*.exe
